@@ -48,7 +48,7 @@ public class Benchmark{
 		long end_add = System.currentTimeMillis();
 		printStatus(start_add, end_add);
 		
-		//Test for the method add()
+		//Test for the method contains()
 		System.out.print("Evaluation for method contains() with existing elements: ");
 		long start_contains = System.currentTimeMillis();
 		for(int i=0; i<elementNo; i++){
