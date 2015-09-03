@@ -38,6 +38,11 @@ public class Benchmark{
 		BloomFilter<String> bf = new BloomFilter<String>(0.001, elementNo);
 		System.out.println("Testing "+elementNo+" elements.");
 		System.out.println("With k="+bf.getK()+" hash functions.");
+		/*for(int i=0; i<bf.size(); i++){
+		System.out.print(bf.getBit(i)+" ");
+		}
+		System.out.print("\n");*/
+		
 		
 		//Test for the method add()
 		System.out.print("Evaluation for method add(): ");
@@ -47,6 +52,10 @@ public class Benchmark{
 		}
 		long end_add = System.currentTimeMillis();
 		printStatus(start_add, end_add);
+		/*for(int i=0; i<bf.size(); i++){
+			System.out.print(bf.getBit(i)+" ");
+		}
+		System.out.print("\n");*/
 		
 		//Test for the method contains()
 		System.out.print("Evaluation for method contains() with existing elements: ");
