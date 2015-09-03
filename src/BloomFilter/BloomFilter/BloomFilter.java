@@ -12,12 +12,12 @@ import java.util.Collection;
 
 public class BloomFilter<E> implements Serializable{
 	
-	private BitSet bitset;
-	private int bitSetSize;
-	private double bitsPerElement;
-	private int maxElementNumber; //the maximum number of elements can be inserted in the Bloom Filter
-	private int elementNumber; //the number of elements actually added into the Bloom Filter
-	private int k; //the number of hash functions
+	public BitSet bitset;
+	public int bitSetSize;
+	public double bitsPerElement;
+	public int maxElementNumber; //the maximum number of elements can be inserted in the Bloom Filter
+	public int elementNumber; //the number of elements actually added into the Bloom Filter
+	public int k; //the number of hash functions
 	
 	static final Charset charset = Charset.forName("UTF-8"); //to store the hash values as string
 	
