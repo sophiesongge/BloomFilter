@@ -259,15 +259,6 @@ public class BloomFilter<E> implements Serializable{
         elementNumber = 0;
     }
     
-    /**
-     * A method to add an object to the Bloom filter. The output from the object's
-     * toString() method is used as input to the hash functions.
-     *
-     * @param element: is an element to register in the Bloom filter.
-     */
-    public void add(E element) {
-       add(element.toString().getBytes(charset));
-    }
 
     /**
      * A method to add an array of bytes to the Bloom Filter.
@@ -279,6 +270,16 @@ public class BloomFilter<E> implements Serializable{
        for (int hash : hashes)
            bitset.set(Math.abs(hash % bitSetSize), true);
        elementNumber ++;
+    }
+    
+    /**
+     * A method to add an object to the Bloom filter. The output from the object's
+     * toString() method is used as input to the hash functions.
+     *
+     * @param element: is an element to register in the Bloom filter.
+     */
+    public void add(E element) {
+       add(element.toString().getBytes(charset));
     }
     
     /**

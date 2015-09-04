@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Benchmark{
-	static int elementNo = 50000; // The number of elements to evaluate
+	static int elementNo = 36; // The number of elements to evaluate
 	
 	public static void printStatus(long start, long end){
 		double diff = (end-start)/1000.0;
@@ -34,6 +34,29 @@ public class Benchmark{
 			newElement.add(new String(b));
 		}
 		
+		//A new Count Based Sliding Window Bloom Filter with false positive 0.001, sliding window size 12, number of generation 3
+		CountSlidingBF csbf = new CountSlidingBF(12, 3, 0.001);
+		System.out.println("Testing "+elementNo+" elements with false positive 0.001, sliding window size 12 and 3 generations");
+		System.out.println("With k="+csbf.BloomFilter.getK()+" hash functions.");
+		System.out.println("The Bloom Filter Size is: "+csbf.BloomFilter.bitSetSize);
+		for(int i=0; i<csbf.BloomFilter.size(); i++){
+			System.out.print(csbf.BloomFilter.getBit(i)+" ");
+		}
+		System.out.print("\n");
+		
+		//Test for method add() in CountSlidingBF.java
+		System.out.println("Evaluation for method add() in CountSlidingBF: ");
+		long start_addcsbf = System.currentTimeMillis();
+		for(int i=0; i<elementNo; i++){
+			csbf.add(elementList.get(i));
+		}
+		long end_addcsbf = System.currentTimeMillis();
+		printStatus(start_addcsbf, end_addcsbf);
+		for(int i=0; i<elementNo; i++){
+			System.out.print(csbf.BloomFilter.getBit(i)+" ");
+		}
+		System.out.print("\n");
+		
 		//A new Bloom Filter with false positive 0.001, and maximum number of elements elementNo
 		BloomFilter<String> bf = new BloomFilter<String>(0.001, elementNo);
 		System.out.println("Testing "+elementNo+" elements.");
@@ -44,8 +67,8 @@ public class Benchmark{
 		System.out.print("\n");*/
 		
 		
-		//Test for the method add()
-		System.out.print("Evaluation for method add(): ");
+		//Test for the method add() in BloomFilter.java
+		System.out.print("Evaluation for method add() in BloomFilter: ");
 		long start_add = System.currentTimeMillis();
 		for(int i=0; i<elementNo; i++){
 			bf.add(elementList.get(i));
@@ -90,6 +113,10 @@ public class Benchmark{
         }
         long end_ncontainsAll = System.currentTimeMillis();
         printStatus(start_ncontainsAll, end_ncontainsAll);*/
+		
+		
+		
+		
 
 	}	
 	
