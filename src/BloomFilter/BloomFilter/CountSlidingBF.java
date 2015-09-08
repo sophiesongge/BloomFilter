@@ -68,30 +68,95 @@ public class CountSlidingBF<E>{
 		this.Generation = new HashMap();
 	}
 	
+	/**
+	 * A method to add bytes in CSBF
+	 * @param bytes
+	 */
 	public void add(byte[] bytes){
-		BloomFilter.add(bytes);
-		int[] hashes = BloomFilter.createHashes(bytes, k);
-		elementNumber ++;
+		int[] hashes = this.BloomFilter.createHashes(bytes, this.BloomFilter.getK());
 		int generationNumber = (int) Math.floor(elementNumber / generationSize);
 		for(int hash : hashes){
-			this.Generation.put(Math.abs(hash % BloomFilter.bitSetSize), generationNumber);
+			this.Generation.put(Math.abs(hash % this.BloomFilter.bitSetSize), generationNumber);
 		}
+		ArrayList<Integer> index = new ArrayList<Integer>();
+		for(Integer key : Generation.keySet()){
+			if(Generation.get(key)==0){
+				index.add(key);
+			}
+		}
+		BloomFilter.add(bytes);
+		elementNumber ++;
 		if(elementNumber > slidingWindowSize){
-			ArrayList<Integer> index = new ArrayList<Integer>();
-			for(Integer key : Generation.keySet()){
-				if(Generation.get(key)==0){
-					index.add(key);
-				}
-			}
 			for(int i=0; i<index.size(); i++){
-				BloomFilter.setBit((int) index.get(i), false);
+				BloomFilter.setBit(index.get(i), false);
 			}
-			elementNumber = 0;
+			elementNumber = 1;
 		}
 	}
 	
-	 public void add(E element) {
+	/**
+	 * A method to add strings in CSBF
+	 * @param str
+	 */
+	public void add(String str){
+		add(str.getBytes(charset));
+	}
+	
+/*	public void add(String str){
+		int[] hashes = this.BloomFilter.createHashes(str.getBytes(charset), this.BloomFilter.getK());
+		int generationNumber = (int)Math.floor(elementNumber / generationSize);
+		for(int hash : hashes){
+			this.Generation.put(Math.abs(hash % this.BloomFilter.bitSetSize), generationNumber);
+		}
+		ArrayList<Integer> index = new ArrayList<Integer>();
+		for(Integer key : Generation.keySet()){
+			if(Generation.get(key)==0){
+				index.add(key);
+			}
+		}
+		BloomFilter.add(str);
+		elementNumber ++;
+		if(elementNumber > slidingWindowSize){
+			for(int i=0; i<index.size(); i++){
+				BloomFilter.setBit(index.get(i), false);
+			}
+			elementNumber = 1;
+		}
+	}*/
+	
+	/**
+	 * A method to add elements in CSBF
+	 * @param element
+	 */
+	public void add(E element) {
 	       add(element.toString().getBytes(charset));
 	    }
+	
+	/**
+	 * A method to test whether a bytes[] is contained in the CSBF
+	 * @param bytes
+	 * @return
+	 */
+	 public boolean contains(byte[] bytes) {
+	        return this.BloomFilter.contains(bytes);
+	    }
+	 
+	 /**
+	  * A method to test whether an object is contained in the CSBF
+	  * @param element
+	  * @return
+	  */
+	 public boolean contains(E element) {
+	        return this.BloomFilter.contains(element);
+	    }
+	 
+	 /**
+	  * A method to test whether a string is contained in the CSBF
+	  * @param str
+	  * @return
+	  */
+	 public boolean contains(String str){
+		 return this.BloomFilter.contains(str.getBytes(charset));
+	 }
 	
 }

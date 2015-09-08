@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Benchmark{
-	static int elementNo = 36; // The number of elements to evaluate
+	static int elementNo = 48; // The number of elements to evaluate
 	
 	public static void printStatus(long start, long end){
 		double diff = (end-start)/1000.0;
@@ -36,11 +36,16 @@ public class Benchmark{
 		
 		//A new Count Based Sliding Window Bloom Filter with false positive 0.001, sliding window size 12, number of generation 3
 		CountSlidingBF csbf = new CountSlidingBF(12, 3, 0.001);
+		BloomFilter bf1 = new BloomFilter(0.001, 12);
 		System.out.println("Testing "+elementNo+" elements with false positive 0.001, sliding window size 12 and 3 generations");
 		System.out.println("With k="+csbf.BloomFilter.getK()+" hash functions.");
 		System.out.println("The Bloom Filter Size is: "+csbf.BloomFilter.bitSetSize);
 		for(int i=0; i<csbf.BloomFilter.size(); i++){
 			System.out.print(csbf.BloomFilter.getBit(i)+" ");
+		}
+		System.out.print("\n");
+		for(int i=0; i<bf1.size(); i++){
+			System.out.print(bf1.getBit(i)+" ");
 		}
 		System.out.print("\n");
 		
@@ -49,11 +54,16 @@ public class Benchmark{
 		long start_addcsbf = System.currentTimeMillis();
 		for(int i=0; i<elementNo; i++){
 			csbf.add(elementList.get(i));
+			bf1.add(elementList.get(i));
 		}
 		long end_addcsbf = System.currentTimeMillis();
 		printStatus(start_addcsbf, end_addcsbf);
-		for(int i=0; i<elementNo; i++){
+		for(int i=0; i<csbf.BloomFilter.size(); i++){
 			System.out.print(csbf.BloomFilter.getBit(i)+" ");
+		}
+		System.out.print("\n");
+		for(int i=0; i<bf1.size(); i++){
+			System.out.print(bf1.getBit(i)+" ");
 		}
 		System.out.print("\n");
 		
@@ -61,10 +71,7 @@ public class Benchmark{
 		BloomFilter<String> bf = new BloomFilter<String>(0.001, elementNo);
 		System.out.println("Testing "+elementNo+" elements.");
 		System.out.println("With k="+bf.getK()+" hash functions.");
-		/*for(int i=0; i<bf.size(); i++){
-		System.out.print(bf.getBit(i)+" ");
-		}
-		System.out.print("\n");*/
+		
 		
 		
 		//Test for the method add() in BloomFilter.java
@@ -75,10 +82,10 @@ public class Benchmark{
 		}
 		long end_add = System.currentTimeMillis();
 		printStatus(start_add, end_add);
-		/*for(int i=0; i<bf.size(); i++){
+		for(int i=0; i<bf.size(); i++){
 			System.out.print(bf.getBit(i)+" ");
 		}
-		System.out.print("\n");*/
+		System.out.print("\n");
 		
 		//Test for the method contains()
 		System.out.print("Evaluation for method contains() with existing elements: ");
