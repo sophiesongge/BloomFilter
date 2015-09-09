@@ -51,7 +51,10 @@ public class BenchmarkCSBF{
 		}
 		System.out.println("\n");
 		
-		System.out.println(csbf.contains(elementList.get(3)));
+		System.out.println(csbf.contains(elementList.get(3))+" csbf for the first genenration");
 		System.out.println(bf.contains(elementList.get(3)));
+		
+		System.out.println(csbf.contains(elementList.get(4))+" csbf for the second generation");
+		System.out.println(bf.contains(elementList.get(4)));
 	}
 }
