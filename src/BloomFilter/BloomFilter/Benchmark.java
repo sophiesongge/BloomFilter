@@ -34,38 +34,6 @@ public class Benchmark{
 			newElement.add(new String(b));
 		}
 		
-		//A new Count Based Sliding Window Bloom Filter with false positive 0.001, sliding window size 12, number of generation 3
-		CountSlidingBF csbf = new CountSlidingBF(12, 3, 0.001);
-		BloomFilter bf1 = new BloomFilter(0.001, 12);
-		System.out.println("Testing "+elementNo+" elements with false positive 0.001, sliding window size 12 and 3 generations");
-		System.out.println("With k="+csbf.BloomFilter.getK()+" hash functions.");
-		System.out.println("The Bloom Filter Size is: "+csbf.BloomFilter.bitSetSize);
-		for(int i=0; i<csbf.BloomFilter.size(); i++){
-			System.out.print(csbf.BloomFilter.getBit(i)+" ");
-		}
-		System.out.print("\n");
-		for(int i=0; i<bf1.size(); i++){
-			System.out.print(bf1.getBit(i)+" ");
-		}
-		System.out.print("\n");
-		
-		//Test for method add() in CountSlidingBF.java
-		System.out.println("Evaluation for method add() in CountSlidingBF: ");
-		long start_addcsbf = System.currentTimeMillis();
-		for(int i=0; i<elementNo; i++){
-			csbf.add(elementList.get(i));
-			bf1.add(elementList.get(i));
-		}
-		long end_addcsbf = System.currentTimeMillis();
-		printStatus(start_addcsbf, end_addcsbf);
-		for(int i=0; i<csbf.BloomFilter.size(); i++){
-			System.out.print(csbf.BloomFilter.getBit(i)+" ");
-		}
-		System.out.print("\n");
-		for(int i=0; i<bf1.size(); i++){
-			System.out.print(bf1.getBit(i)+" ");
-		}
-		System.out.print("\n");
 		
 		//A new Bloom Filter with false positive 0.001, and maximum number of elements elementNo
 		BloomFilter<String> bf = new BloomFilter<String>(0.001, elementNo);
