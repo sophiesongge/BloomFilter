@@ -73,16 +73,7 @@ public class CountSlidingBF<E>{
 	 * @param bytes
 	 */
 	public void add(byte[] bytes){
-		int[] hashes = this.BloomFilter.createHashes(bytes, this.BloomFilter.getK());
 		int generationNumber = (int) Math.floor(elementNumber / generationSize) % 3;
-		//System.out.println(generationNumber);
-		for(int hash : hashes){
-			this.Generation.put(Math.abs(hash % this.BloomFilter.bitSetSize), generationNumber);
-		}
-		
-		BloomFilter.add(bytes);
-		elementNumber ++;
-		
 		if(elementNumber > slidingWindowSize){
 			if(elementNumber % generationSize == 0){
 				ArrayList<Integer> index = new ArrayList<Integer>();
@@ -96,6 +87,14 @@ public class CountSlidingBF<E>{
 				}
 			}
 		}
+		int[] hashes = this.BloomFilter.createHashes(bytes, this.BloomFilter.getK());
+		//System.out.println(generationNumber);
+		for(int hash : hashes){
+			this.Generation.put(Math.abs(hash % this.BloomFilter.bitSetSize), generationNumber);
+		}
+		
+		BloomFilter.add(bytes);
+		elementNumber ++;
 		
 		/*ArrayList<Integer> index = new ArrayList<Integer>();
 		for(Integer key : Generation.keySet()){

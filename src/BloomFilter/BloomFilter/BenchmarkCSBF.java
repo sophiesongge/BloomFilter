@@ -52,10 +52,10 @@ public class BenchmarkCSBF{
 		System.out.println("\n");
 		
 		System.out.println("When we have 13 elements, and the sliding window size is 12");
-		System.out.println(csbf.contains(elementList.get(21))+": csbf doesn't contain this element, because it is in the first genenration");
+		System.out.println(csbf.contains(elementList.get(5))+": csbf doesn't contain this element, because it is in the first genenration");
 		System.out.println(bf.contains(elementList.get(3))+": bf contains this element");
 		
-		System.out.println(csbf.contains(elementList.get(4))+": csbf contains this element, because it is in the second generation");
+		System.out.println(csbf.contains(elementList.get(10))+": csbf contains this element, because it is in the second generation");
 		System.out.println(bf.contains(elementList.get(4))+": bf contains this element too");
 	}
 }
