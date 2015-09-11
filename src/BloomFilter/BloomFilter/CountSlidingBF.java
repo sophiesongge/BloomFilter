@@ -73,7 +73,7 @@ public class CountSlidingBF<E>{
 	 * @param bytes
 	 */
 	public void add(byte[] bytes){
-		int generationNumber = (int) Math.floor(elementNumber / generationSize) % 3;
+		int generationNumber = (int) Math.floor(elementNumber / generationSize) % numberOfGeneration;
 		if(elementNumber > slidingWindowSize){
 			if(elementNumber % generationSize == 0){
 				ArrayList<Integer> index = new ArrayList<Integer>();
@@ -96,19 +96,6 @@ public class CountSlidingBF<E>{
 		BloomFilter.add(bytes);
 		elementNumber ++;
 		
-		/*ArrayList<Integer> index = new ArrayList<Integer>();
-		for(Integer key : Generation.keySet()){
-			if(Generation.get(key)==0){
-				index.add(key);
-			}
-		}
-		
-		if(elementNumber > slidingWindowSize){
-			for(int i=0; i<index.size(); i++){
-				BloomFilter.setBit(index.get(i), false);
-			}
-			elementNumber = 1;
-		}*/
 	}
 	
 	/**
