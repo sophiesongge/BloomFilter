@@ -341,6 +341,11 @@ public class BloomFilter<E> implements Serializable{
         return true;
     }
     
+    
+    public boolean contains(String str){
+    	return contains(str.getBytes(charset));
+    }
+    
     /**
      * A method to return the value chosen for K
      * 
