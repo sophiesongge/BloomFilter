@@ -21,9 +21,9 @@ import RDF.RDFTriple;
 
 public class multiVariableJoin{
 	public static void main(String[] args){
-		Read r1 = new Read("/Users/gsong/Documents/workspace/BloomFilter/src/data/p11.txt");
-		Read r2 = new Read("/Users/gsong/Documents/workspace/BloomFilter/src/data/p12.txt");
-		Read r3 = new Read("/Users/gsong/Documents/workspace/BloomFilter/src/data/p13.txt");
+		Read r1 = new Read("./src/data/p11.txt");
+		Read r2 = new Read("./src/data/p12.txt");
+		Read r3 = new Read("./src/data/p13.txt");
 		ArrayList p1 = Read.Reader(r1.filePath);
 		ArrayList p2 = Read.Reader(r2.filePath);
 		ArrayList p3 = Read.Reader(r3.filePath);
