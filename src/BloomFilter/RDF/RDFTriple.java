@@ -1,3 +1,6 @@
+/**
+ * @author gsong
+ */
 package RDF;
 
 public class RDFTriple{

@@ -7,3 +7,5 @@ Lisa Work INRIA
 Ana Work INRIA
 Paul Work INRIA
 Fabrice Work INRIA
+Lea Work INRIA
+Frederic Work ECP
