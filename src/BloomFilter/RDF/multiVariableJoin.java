@@ -65,7 +65,8 @@ public class multiVariableJoin{
 		}
 		
 		for(int n=0; n<result.size(); n++){
-			System.out.println("?S: "+((RDFTriple)result.get(n)).getSubject()+", "+" And its ?O: "+((RDFTriple)result.get(n)).getObject());
+			System.out.println(result.get(n).toString());
+			//System.out.println("?S: "+((RDFTriple)result.get(n)).getSubject()+", "+" And its ?O: "+((RDFTriple)result.get(n)).getObject());
 		}
 	}
 }

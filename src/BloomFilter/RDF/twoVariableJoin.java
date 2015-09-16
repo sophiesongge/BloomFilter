@@ -31,11 +31,15 @@ public class twoVariableJoin{
 		BloomFilter bfp3 = new BloomFilter(0.001, 12);
 		
 		for(int i=0; i<p1.size(); i++){
-			bfp1.add(((RDFTriple) p1.get(i)).getSubject());
+			if(((RDFTriple)p1.get(i)).getObject().equals("INRIA")){
+				bfp1.add(((RDFTriple) p1.get(i)).getSubject());
+			}
 		}
 		
 		for(int j=0; j<p3.size(); j++){
-			bfp3.add(((RDFTriple) p3.get(j)).getSubject());
+			if(((RDFTriple)p3.get(j)).getObject().equals("kNN")){
+				bfp3.add(((RDFTriple) p3.get(j)).getSubject());
+			}
 		}
 		
 		ArrayList result = new ArrayList();
