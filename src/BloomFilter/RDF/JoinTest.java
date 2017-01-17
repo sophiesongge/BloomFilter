@@ -35,9 +35,6 @@ import java.util.ArrayList;
 import BloomFilter.BloomFilter;
 
 public class JoinTest{
-	Read r1;
-	Read r2;
-	Read r3;
 	ArrayList p1;
 	ArrayList p2;
 	ArrayList p3;
@@ -46,12 +43,10 @@ public class JoinTest{
 	BloomFilter bfp3;
 	
 	public JoinTest(String r1, String r2, String r3, double d, int maxElem){
-		this.r1 = new Read(r1);
-		this.r2 = new Read(r2);
-		this.r3 = new Read(r3);
-		this.p1 = Read.Reader(this.r1.filePath);
-		this.p2 = Read.Reader(this.r2.filePath);
-		this.p3 = Read.Reader(this.r3.filePath);
+		Read read = new Read();
+		this.p1 = read.Reader(r1);
+		this.p2 = read.Reader(r2);
+		this.p3 = read.Reader(r3);
 		this.bfp1 = new BloomFilter(d,maxElem);
 		this.bfp2 = new BloomFilter(d,maxElem);
 		this.bfp3 = new BloomFilter(d,maxElem);

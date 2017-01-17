@@ -106,28 +106,6 @@ public class CountSlidingBF<E>{
 		add(str.getBytes(charset));
 	}
 	
-/*	public void add(String str){
-		int[] hashes = this.BloomFilter.createHashes(str.getBytes(charset), this.BloomFilter.getK());
-		int generationNumber = (int)Math.floor(elementNumber / generationSize);
-		for(int hash : hashes){
-			this.Generation.put(Math.abs(hash % this.BloomFilter.bitSetSize), generationNumber);
-		}
-		ArrayList<Integer> index = new ArrayList<Integer>();
-		for(Integer key : Generation.keySet()){
-			if(Generation.get(key)==0){
-				index.add(key);
-			}
-		}
-		BloomFilter.add(str);
-		elementNumber ++;
-		if(elementNumber > slidingWindowSize){
-			for(int i=0; i<index.size(); i++){
-				BloomFilter.setBit(index.get(i), false);
-			}
-			elementNumber = 1;
-		}
-	}*/
-	
 	/**
 	 * A method to add elements in CSBF
 	 * @param element

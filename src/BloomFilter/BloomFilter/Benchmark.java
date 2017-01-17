@@ -72,27 +72,6 @@ public class Benchmark{
 		long end_ncontains = System.currentTimeMillis();
 		printStatus(start_ncontains, end_ncontains);
 		
-		/*//Test for the method containsAll()
-		System.out.println("Evaluation for method containsAll() with existing elements: ");
-		long start_containsAll = System.currentTimeMillis();
-		for(int i=0; i<elementNo; i++){
-			bf.contains(elementList.get(i));
-		}
-		long end_containsAll = System.currentTimeMillis();
-		printStatus(start_containsAll, end_containsAll);
-
-        System.out.println("Evaluation for method containsAll() with non-existing elements: ");
-        long start_ncontainsAll = System.currentTimeMillis();
-        for(int i=0; i<elementNo; i++){
-        	bf.contains(newElement.get(i));
-        }
-        long end_ncontainsAll = System.currentTimeMillis();
-        printStatus(start_ncontainsAll, end_ncontainsAll);*/
-		
-		
-		
-		
-
 	}	
 	
 }
